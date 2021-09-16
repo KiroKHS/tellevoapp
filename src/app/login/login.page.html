@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    
     <ion-title>login</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,8 +15,15 @@
 
       <ion-card-content>
         <ion-label >usuario</ion-label>
-        <ion-input placeholder="usu.ario" ></ion-input>
+        <ion-input class="login" placeholder="usu.ario"  [(ngModel)]="user.nombre"></ion-input>
+        <ion-label >clave</ion-label>
+        <ion-input class="login" type="password" placeholder="12034"  [(ngModel)]="user.clave"></ion-input>
+        <div>
+          <ion-button color="success" expand="full" (click)="login()">ingresar</ion-button>
+          <ion-button color="warning" expand="full" (click)="recuperar()">recuperar</ion-button>
+        </div>
       </ion-card-content>
     </ion-card>
   </div>
+
 </ion-content>

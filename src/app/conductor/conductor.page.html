@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>conductor</ion-title>
+    <ion-back-button slot="start">volver</ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{conductor.name}} {{conductor.lasname}}</ion-card-title>
+    </ion-card-header>
+<!-- datos del conductor -->
+<ion-card-content>
+
+    <img width="175px" src="{{conductor.imgen}}" alt="avatar{{conductor.name}}"><br>
+
+  <ion-label><b>Acientos:</b> {{conductor.acientos}}</ion-label><br>
+  <ion-label><b>Direccion:</b> {{conductor.direccion}}</ion-label><br>
+  <ion-label><b>matricula:</b> {{conductor.matricula}}</ion-label><br>
+  <ion-label  color="success"><b>costo ${{conductor.costo}}  </b></ion-label>
+<!-- los cheack -->
+  <ion-list>
+    <ion-item>
+      <ion-label>viaje al duoc {{conductor.salicasa}}</ion-label>
+      <ion-toggle checked [(ngModel)]="pepperoni"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>salida del duoc: {{conductor.saliduoc}}</ion-label>
+      <ion-toggle [(ngModel)]="mushrooms"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+    <!-- solicitar viaje -->
+  </ion-card-content>
+</ion-card>
+<ion-button #btn expand="full" (click)="showToast()" color="success">PEDIR TRANSPORTE</ion-button>
+</ion-content>
