@@ -8,7 +8,7 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{conductor.name}} {{conductor.lasname}}</ion-card-title>
+      <ion-card-title id="Nombre">{{conductor.name}} {{conductor.lasname}}</ion-card-title>
     </ion-card-header>
 <!-- datos del conductor -->
 <ion-card-content>
@@ -22,11 +22,11 @@
 <!-- los cheack -->
   <ion-list>
     <ion-item>
-      <ion-label>viaje al duoc {{conductor.salicasa}}</ion-label>
+      <ion-label>viaje duoc {{conductor.salicasa}}</ion-label>
       <ion-toggle checked [(ngModel)]="pepperoni"></ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-label>salida del duoc: {{conductor.saliduoc}}</ion-label>
+      <ion-label>salida duoc: {{conductor.saliduoc}}</ion-label>
       <ion-toggle [(ngModel)]="mushrooms"></ion-toggle>
     </ion-item>
   </ion-list>
@@ -34,5 +34,7 @@
     <!-- solicitar viaje -->
   </ion-card-content>
 </ion-card>
-<ion-button #btn expand="full" (click)="showToast()" color="success">PEDIR TRANSPORTE</ion-button>
+<!-- cambiar el color del boton tarrea pendiente -->
+<!-- <ion-button expand="full" (click)="showToast()" color="success">PEDIR TRANSPORTE</ion-button> -->
+<ion-button expand="full" color="success" id="btn-transporte" (click)="animar('Nombre')">PEDIR TRANSPORTE</ion-button>
 </ion-content>

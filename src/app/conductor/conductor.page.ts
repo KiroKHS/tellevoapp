@@ -9,13 +9,13 @@ import { AnimationController, ToastController } from '@ionic/angular';
 })
 export class ConductorPage implements OnInit {
 
-  @ViewChild('btn',{read: ElementRef}) btn: ElementRef
+  @ViewChild('btnpedir',{read: ElementRef}) btnpedir: ElementRef;
 
   conductor: any;
   constructor(
       private ruta: ActivatedRoute,
       public toast: ToastController,
-      private animationCtrl : AnimationController
+      private animationCtrl : AnimationController,
     ) {
     this.ruta.queryParams.subscribe(params =>{
       this.conductor = JSON.parse(params.conductor)
@@ -23,20 +23,34 @@ export class ConductorPage implements OnInit {
   }
   async showToast() {
     const toast = await this.toast.create({
-      message: 'solicitud enviada. esperando respuesta',
+      message: 'solicitud enviada, esperando respuesta.',
       duration: 5000
     });
     toast.present();
   }
-  animar(){
+
+  // animar(){
+  //   this.animationCtrl.create()
+  //   .addElement(document.querySelector('costo'))
+  //   .duration(2000)
+  //   .fromTo('color', 'green', 'red')
+  //   .iterations(1)
+  //   .play()
+  //   // para que se salga el mensaje de toast
+  //   this.showToast()
+  // }
+
+  animar(id){
+    const  idAnimar = '#' + id;
     this.animationCtrl.create()
-    .addElement(this.btn.nativeElement)
+    .addElement(document.querySelector(idAnimar))
     .duration(2000)
-    .fromTo('color','success','danger')
+    .fromTo('color', 'black', 'green')
     .iterations(1)
     .play();
+    // para que se salga el mensaje de toast
+    this.showToast();
   }
-
 
   ngOnInit() {
   }
