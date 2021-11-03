@@ -29,16 +29,7 @@ export class ConductorPage implements OnInit {
     toast.present();
   }
 
-  // animar(){
-  //   this.animationCtrl.create()
-  //   .addElement(document.querySelector('costo'))
-  //   .duration(2000)
-  //   .fromTo('color', 'green', 'red')
-  //   .iterations(1)
-  //   .play()
-  //   // para que se salga el mensaje de toast
-  //   this.showToast()
-  // }
+
 
   animar(id){
     const  idAnimar = '#' + id;

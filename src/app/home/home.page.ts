@@ -16,6 +16,7 @@ export class HomePage {
     private router: Router,
     public menu: MenuController,
   )
+
   // capturando datos del login
   {this.activeroute.queryParams.subscribe(params =>{
     this.data = this.router.getCurrentNavigation().extras.state.user;
@@ -23,6 +24,10 @@ export class HomePage {
   });
 }
 
+peticionPage(){
+  //re direcciona al usuario
+  this.router.navigate(['/peticion',this.data]);
+};
 //creando funcion para ver conductores
 verConductor(conductor:any){
 //guardando datos

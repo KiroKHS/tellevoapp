@@ -4,6 +4,7 @@
     <ion-title>
       <ion-label>Bienvenido {{data.nombre}}</ion-label>
     </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
@@ -17,4 +18,7 @@
       <ion-icon name="caret-down-circle" (click)="verConductor(conductor)"></ion-icon>
     </ion-item>
   </ion-list>
+  <ion-button expand="full"  (click)="peticionPage()">
+    <ion-icon slot="middle" name="car-outline" size="20" slot="end"></ion-icon>
+  </ion-button>
 </ion-content>
