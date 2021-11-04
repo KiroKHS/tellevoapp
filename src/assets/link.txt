@@ -1,0 +1,7 @@
+https://www.positronx.io/ionic-sqlite-database-crud-app-example-tutorial/
+
+comando para ejecutar
+
+ionic cordova platform add browser
+npm i -g native-run
+ionic cordova run browser 
