@@ -8,21 +8,21 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title id="Nombre">{{conductor.name}} {{conductor.lasname}}</ion-card-title>
+      <ion-card-title id="Nombre"> </ion-card-title>
     </ion-card-header>
 <!-- datos del conductor -->
 <ion-card-content>
 
-    <img width="175px" src="{{conductor.imgen}}" alt="avatar{{conductor.name}}"><br>
+    <img width="175px" src="" alt="avatar"><br>
 
-  <ion-label><b>Acientos:</b> {{conductor.acientos}}</ion-label><br>
-  <ion-label><b>Direccion:</b> {{conductor.direccion}}</ion-label><br>
-  <ion-label><b>matricula:</b> {{conductor.matricula}}</ion-label><br>
-  <ion-label  color="success"><b>costo ${{conductor.costo}}  </b></ion-label>
+  <ion-label><b>Acientos:</b> </ion-label><br>
+  <ion-label><b>Direccion:</b></ion-label><br>
+  <ion-label><b>matricula:</b> </ion-label><br>
+  <ion-label  color="success"><b>costo $ {{res.costo}} </b></ion-label>
 <!-- los cheack -->
   <ion-list>
     <ion-item>
-      <ion-label>viaje duoc {{conductor.salicasa}}</ion-label>
+      <ion-label>viaje duoc </ion-label>
       <ion-toggle checked [(ngModel)]="pepperoni"></ion-toggle>
     </ion-item>
     <ion-item>

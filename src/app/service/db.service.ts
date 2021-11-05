@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Usuario } from './usuario';
+import { Conductor } from './conductor';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
@@ -59,9 +60,9 @@ export class DbService {
   // Get list
   getUsuario(){
     return this.storage.executeSql('SELECT * FROM usuariotable', []).then(res => {
-      let items: Usuario[] = [];
+      const items: Usuario[] = [];
       if (res.rows.length > 0) {
-        for (var i = 0; i < res.rows.length; i++) {
+        for (let i = 0; i < res.rows.length; i++) {
           items.push({
             id: res.rows.item(i).id,
             usuname: res.rows.item(i).usuname,
@@ -86,15 +87,17 @@ export class DbService {
   // }
 
   // Get single object
-  // getSong(id): Promise<Song> {
-  //   return this.storage.executeSql('SELECT * FROM songtable WHERE id = ?', [id]).then(res => {
-  //     return {
-  //       id: res.rows.item(0).id,
-  //       artist_name: res.rows.item(0).artist_name,
-  //       song_name: res.rows.item(0).song_name
-  //     }
-  //   });
-  // }
+  getConductor(id): Promise<Conductor> {
+    return this.storage.executeSql('SELECT * FROM conductortable WHERE conductor = ?', [id]).then(res => {
+      return {
+        id_conductor: res.rows.item(0).id_conductor,
+        conductor: res.rows.item(0).conductor,
+        entrada: res.rows.item(0).entrada,
+        salida: res.rows.item(0).salida,
+        costo: res.rows.item(0).costo
+      }
+    });
+  }
 
   // Update
   // updateSong(id, song: Song) {

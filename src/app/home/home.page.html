@@ -9,16 +9,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let conductor of conductores">
-      <ion-avatar slot="start">
-        <img src="{{conductor.imgen}}" alt="avatar{{conductor.name}}">
-      </ion-avatar>
-      <ion-label> <b> {{conductor.direccion}} ${{conductor.costo}}</b></ion-label>
-      <ion-icon name="caret-down-circle" (click)="verConductor(conductor)"></ion-icon>
+  <div *ngFor="let data of ddata">
+    <ion-item  *ngIf="data.moviliaria === 1">
+      <ion-label>
+        <h5>{{data.nombre}}</h5>
+        <p>{{data.direccion}}</p>
+      </ion-label>
+      <ion-icon name="create" style="zoom:2.0" [routerLink]="['/conductor/', data.id]"></ion-icon>
     </ion-item>
-  </ion-list>
-  <ion-button expand="full"  (click)="peticionPage()">
-    <ion-icon slot="middle" name="car-outline" size="20" slot="end"></ion-icon>
-  </ion-button>
+  </div>
 </ion-content>
