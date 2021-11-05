@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS usuariotable(
 	clave TEXT,
 	nombre TEXT,
 	direccion TEXT,
-	moviliaria INTEGER,
+	moviliaria INTEGER
 );
 
 -- 1=true 0=false
@@ -18,13 +18,13 @@ CREATE TABLE IF NOT EXISTS conductortable(
 	id_conductor INTEGER PRIMARY KEY AUTOINCREMENT,
 	conductor INTEGER,
 	entrada TEXT,
-	costo INTEGER,
-	salida TEXT
+	salida TEXT,
+	costo INTEGER
 );
 
 --condutor es la primary key usuariotable
-INSERT or IGNORE INTO conductortable VALUES(1,1,'8:30','12:15');
-INSERT or IGNORE INTO conductortable VALUES(1,2,'12:15','17:30');
+INSERT or IGNORE INTO conductortable VALUES(1,1,'8:30','12:15',1000);
+INSERT or IGNORE INTO conductortable VALUES(1,2,'12:15','17:30',1000);
 
 --tabla rellena el usuario sin auto, pero lo vera el conductor
 --estado aceptado=1 rechazado=0
