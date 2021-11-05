@@ -49,7 +49,7 @@ export class DbService {
       ).subscribe(data => {
         this.sqlPorter.importSqlToDb(this.storage, data)
           .then(_ => {
-            this.getSongs();
+            this.getUsuario();
             this.isDbReady.next(true);
           })
           .catch(error => console.error(error));
@@ -57,7 +57,7 @@ export class DbService {
     }
 
   // Get list
-  getSongs(){
+  getUsuario(){
     return this.storage.executeSql('SELECT * FROM usuariotable', []).then(res => {
       let items: Usuario[] = [];
       if (res.rows.length > 0) {
