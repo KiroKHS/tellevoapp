@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS usuariotable(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	usuname TEXT,
-	password TEXT,
+	clave TEXT,
 	nombre TEXT,
 	direccion TEXT,
 	moviliaria INTEGER,
