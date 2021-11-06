@@ -6,7 +6,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="data">
     <div *ngFor="let pasajero of data">
       <ion-item>
         <ion-label>

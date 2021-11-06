@@ -61,8 +61,11 @@ export class PeticionPage implements OnInit {
   ngOnInit() {
     this.db.dbState().subscribe((res) => {
       if(res){
+        console.log('fetch:'+this.db.fetchPedido());
+        console.log('getpedido:'+this.db.getPedido());
         this.db.fetchPedido().subscribe(item => {
           this.data = item;
+          console.log('data: '+this.data);
         });
       }
     });
