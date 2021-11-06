@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable arrow-body-style */
 /* eslint-disable @typescript-eslint/member-ordering */
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Usuario } from './usuario';
 import { Conductor } from './conductor';
+import { Pedido } from './pedido';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
@@ -18,6 +20,7 @@ export class DbService {
   usuarioList= new BehaviorSubject([]);
   pedidoList= new BehaviorSubject([]);
   conductorList= new BehaviorSubject([]);
+  pediList= new BehaviorSubject([]);
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(
@@ -78,6 +81,25 @@ export class DbService {
         }
       }
       this.usuarioList.next(items);
+    });
+  }
+  // Get list pedido
+  getPedido(){
+    return this.storage.executeSql('SELECT * FROM pedidotable', []).then(res => {
+      const items: Pedido[] = [];
+      if (res.rows.length > 0) {
+        for (let i = 0; i < res.rows.length; i++) {
+          items.push({
+            id_pedido: res.rows.item(i).id_pedido,
+            id_chofer: res.rows.item(i).id_chofer,
+            pasajero: res.rows.item(i).pasajero,
+            direccion: res.rows.item(i).direccion,
+            hora: res.rows.item(i).hora,
+            estado: res.rows.item(i).estado
+           });
+        }
+      }
+      this.pediList.next(items);
     });
   }
 
