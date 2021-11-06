@@ -1,7 +1,8 @@
+/* eslint-disable @angular-eslint/use-lifecycle-interface */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { MenuController, NavController, ToastController } from '@ionic/angular';
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { DbService } from './../service/db.service';
 
 @Component({
@@ -39,13 +40,13 @@ peticionPage(){
   this.router.navigate(['/peticion',this.data]);
 };
 //creando funcion para ver conductores
-verConductor(conductor:any){
+verConductor(conductor: any){
 //guardando datos
-  let nav:NavigationExtras={
+  const nav: NavigationExtras={
     queryParams:{
       conductor: JSON.stringify(conductor)
     }
-  }
+  };
   this.navCTRL.navigateForward(['conductor/'],nav);
 }
 
@@ -53,8 +54,8 @@ ngOnInit() {
   this.db.dbState().subscribe((res) => {
     if(res){
       this.db.fetchSongs().subscribe(item => {
-        this.ddata = item
-      })
+        this.ddata = item;
+      });
     }
   });
 }
