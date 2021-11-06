@@ -18,7 +18,7 @@
         </ion-avatar> -->
         <ion-icon (click)="showToast('pasajero vive en '+pasajero.direccion)" name="compass-outline"></ion-icon>
         <ion-icon (click)="animarYes(pasajero.pasajero+pasajero.id_pedido)"name="checkmark-circle-outline"></ion-icon>
-        <ion-icon (click)="animarNo(pasajero.pasajero+pasajero.id_pedido)"name="close-circle-outline"></ion-icon>
+        <ion-icon (click)="deletePedido(pasajero.id_pedido)"name="close-circle-outline"></ion-icon>
       </ion-item>
     </div>
   </ion-list>

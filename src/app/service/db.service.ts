@@ -106,14 +106,16 @@ export class DbService {
     });
   }
 
-  // Add
-  // addPedido(id_conductor, nombrePedido,destino,hora) {
-  //   let data = [id_conductor, nombrePedido,destino,hora];
-  //   return this.storage.executeSql('INSERT INTO pedidorable VALUES (1,?,?,?,?,?,0)', data)
-  //   .then(res => {
-  //     this.conductorList;
-  //   });
-  // }
+  //  * Add pedido
+  addPedido(id_conductor, nombrePedido,destino,hora) {
+    // eslint-disable-next-line prefer-const
+    let data = [id_conductor, nombrePedido,destino,hora];
+    // ! generar autoinclementable
+    return this.storage.executeSql('INSERT INTO pedidortable VALUES (2,?,?,?,?,0)', data)
+    .then(res => {
+      this.getPedido();
+    });
+  }
 
 
   getConductor(id): Promise<Conductor> {
@@ -129,7 +131,7 @@ export class DbService {
     });
   }
 
-  // Update
+  // * Update
   // updateSong(id, song: Song) {
   //   let data = [song.artist_name, song.song_name];
   //   return this.storage.executeSql(`UPDATE songtable SET artist_name = ?, song_name = ? WHERE id = ${id}`, data)
@@ -139,10 +141,8 @@ export class DbService {
   // }
 
   // Delete
-  // deleteSong(id) {
-  //   return this.storage.executeSql('DELETE FROM songtable WHERE id = ?', [id])
-  //   .then(_ => {
-  //     this.getSongs();
-  //   });
-  // }
+  async deletePedido(id) {
+    const _ = await this.storage.executeSql('DELETE FROM pedidotable WHERE id_pedido = ?', [id]);
+    this.getPedido();
+  }
 }

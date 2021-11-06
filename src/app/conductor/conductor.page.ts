@@ -53,6 +53,10 @@ export class ConductorPage implements OnInit {
     this.showToast();
   }
 
+  storeData(usuario,direccion) {
+    this.db.addPedido(this.conductor.id_conductor, usuario,direccion,this.conductor.hora);
+  }
+
   ngOnInit() {
   }
 

@@ -55,8 +55,14 @@ export class PeticionPage implements OnInit {
     .iterations(1)
     .play();
     // para que se salga el mensaje de toast
-    this.showToast('Solicitud Rechazada');
   }
+
+  deletePedido(id){
+    this.db.deletePedido(id).then(async (res) => {
+    });
+  }
+
+
 
   ngOnInit() {
     this.db.dbState().subscribe((res) => {
