@@ -27,7 +27,7 @@ INSERT or IGNORE INTO conductortable VALUES(1,'sett','8:30','12:15',1000);
 INSERT or IGNORE INTO conductortable VALUES(2,'rakan','12:15','17:30',1200);
 
 --tabla rellena el usuario sin auto, pero lo vera el conductor
---estado aceptado=1 rechazado=0
+--estado aceptado=1 rechazado=0 sinrevisar=2
 CREATE TABLE IF NOT EXISTS pedidotable(
 	id_pedido INTEGER PRIMARY KEY AUTOINCREMENT,
 	id_chofer INTEGER,
@@ -36,3 +36,5 @@ CREATE TABLE IF NOT EXISTS pedidotable(
 	hora TEXT,
 	estado INTEGER
 );
+
+INSERT or IGNORE INTO pedidotable VALUES(1,2,'Juan','bollenar','12:30',2);
