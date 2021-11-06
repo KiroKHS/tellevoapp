@@ -4,7 +4,7 @@ export class Pedido {
 	// eslint-disable-next-line @typescript-eslint/naming-convention
 	id_chofer: number;
 	pasajero: string;
-	direccion: number;
+	direccion: string;
 	hora: string;
 	estado: number;
 }
