@@ -48,6 +48,9 @@ export class DbService {
   fetchSongs(): Observable<Usuario[]> {
     return this.usuarioList.asObservable();
   }
+  fetchPedido(): Observable<Pedido[]> {
+    return this.pediList.asObservable();
+  }
 
     // Render fake data
     getFakeData() {

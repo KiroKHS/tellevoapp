@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AnimationController, ToastController } from '@ionic/angular';
+import { AnimationController, NavController, ToastController } from '@ionic/angular';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { DbService } from './../service/db.service';
 
 @Component({
   selector: 'app-peticion',
@@ -9,11 +11,16 @@ import { AnimationController, ToastController } from '@ionic/angular';
 })
 export class PeticionPage implements OnInit {
 
+  data: any[]=[];
+
   constructor(
+    private navCTRL: NavController,
     public toast: ToastController,
     private animationCtrl: AnimationController,
     private activeroute: ActivatedRoute,
     private router: Router,
+    private db: DbService,
+    public formBuilder: FormBuilder,
     ) { }
 
 
@@ -52,20 +59,12 @@ export class PeticionPage implements OnInit {
   }
 
   ngOnInit() {
+    this.db.dbState().subscribe((res) => {
+      if(res){
+        this.db.fetchPedido().subscribe(item => {
+          this.data = item;
+        });
+      }
+    });
   }
-peticion : any = [{
-  id:1,
-  name:'Rakan',
-  casa: true,
-  direccion: 'jonia',
-  duoc: false,
-  imageUrl: 'http://pm1.narvii.com/6594/b99e546e71a103a71c41935bc91b4e9bd3606190_00.jpg'
-},{
-  id:2,
-  name:'Sett',
-  casa: false,
-  direccion: 'jonia',
-  duoc: true,
-  imageUrl: 'https://www.mobafire.com/images/avatars/sett-pool-party.png'
-},];
 }
