@@ -14,6 +14,8 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 export class DbService {
   private storage: SQLiteObject;
   usuarioList= new BehaviorSubject([]);
+  pedidoList= new BehaviorSubject([]);
+  conductorList= new BehaviorSubject([]);
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(
@@ -57,7 +59,7 @@ export class DbService {
       });
     }
 
-  // Get list
+  // Get list usuarios
   getUsuario(){
     return this.storage.executeSql('SELECT * FROM usuariotable', []).then(res => {
       const items: Usuario[] = [];
@@ -78,23 +80,23 @@ export class DbService {
   }
 
   // Add
-  // addSong(artist_name, song_name) {
-  //   let data = [artist_name, song_name];
-  //   return this.storage.executeSql('INSERT INTO songtable (artist_name, song_name) VALUES (?, ?)', data)
-  //   .then(res => {
-  //     this.getSongs();
-  //   });
-  // }
+  addPedido(id_conductor, nombrePedido,destino,hora) {
+    let data = [id_conductor, nombrePedido,destino,hora];
+    return this.storage.executeSql('INSERT INTO pedidorable VALUES (1,?,?,?,?,?,0)', data)
+    .then(res => {
+      this.conductorList;
+    });
+  }
 
-  // Get single object
+  
   getConductor(id): Promise<Conductor> {
-    return this.storage.executeSql('SELECT * FROM conductortable WHERE conductor = ?', [id]).then(res => {
+    return this.storage.executeSql('SELECT * FROM conductortable WHERE id_conductor = ?', [id]).then(res => { 
       return {
-        id_conductor: res.rows.item(0).id_conductor,
-        conductor: res.rows.item(0).conductor,
-        entrada: res.rows.item(0).entrada,
-        salida: res.rows.item(0).salida,
-        costo: res.rows.item(0).costo
+            id_conductor: res.rows.item(0).id_conductor,
+            conductor: res.rows.item(0).conductor,
+            costo: res.rows.item(0).costo,
+            salida: res.rows.item(0).salida,
+            entrada: res.rows.item(0).entrada
       }
     });
   }

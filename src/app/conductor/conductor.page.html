@@ -5,10 +5,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="conductor">
   <ion-card>
     <ion-card-header>
-      <ion-card-title id="Nombre"> </ion-card-title>
+      <ion-card-title id="Nombre"> {{conductor.conductor}} </ion-card-title>
     </ion-card-header>
 <!-- datos del conductor -->
 <ion-card-content>
@@ -18,15 +18,15 @@
   <ion-label><b>Acientos:</b> </ion-label><br>
   <ion-label><b>Direccion:</b></ion-label><br>
   <ion-label><b>matricula:</b> </ion-label><br>
-  <ion-label  color="success"><b>costo $ {{res.costo}} </b></ion-label>
+  <ion-label  color="success"><b>costo $ {{conductor.costo}} </b></ion-label>
 <!-- los cheack -->
   <ion-list>
     <ion-item>
-      <ion-label>viaje duoc </ion-label>
+      <ion-label>viaje duoc: {{conductor.entrada}} </ion-label>
       <ion-toggle checked [(ngModel)]="pepperoni"></ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-label>salida duoc: {{conductor.saliduoc}}</ion-label>
+      <ion-label>salida duoc: {{conductor.salida}}</ion-label>
       <ion-toggle [(ngModel)]="mushrooms"></ion-toggle>
     </ion-item>
   </ion-list>
