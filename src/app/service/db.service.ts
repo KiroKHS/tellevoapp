@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable @typescript-eslint/member-ordering */
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Usuario } from './usuario';
@@ -80,24 +82,25 @@ export class DbService {
   }
 
   // Add
-  addPedido(id_conductor, nombrePedido,destino,hora) {
-    let data = [id_conductor, nombrePedido,destino,hora];
-    return this.storage.executeSql('INSERT INTO pedidorable VALUES (1,?,?,?,?,?,0)', data)
-    .then(res => {
-      this.conductorList;
-    });
-  }
+  // addPedido(id_conductor, nombrePedido,destino,hora) {
+  //   let data = [id_conductor, nombrePedido,destino,hora];
+  //   return this.storage.executeSql('INSERT INTO pedidorable VALUES (1,?,?,?,?,?,0)', data)
+  //   .then(res => {
+  //     this.conductorList;
+  //   });
+  // }
 
-  
+
   getConductor(id): Promise<Conductor> {
-    return this.storage.executeSql('SELECT * FROM conductortable WHERE id_conductor = ?', [id]).then(res => { 
+    return this.storage.executeSql('SELECT * FROM conductortable WHERE id_conductor = ?', [id]).then(res => {
       return {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             id_conductor: res.rows.item(0).id_conductor,
             conductor: res.rows.item(0).conductor,
             costo: res.rows.item(0).costo,
             salida: res.rows.item(0).salida,
             entrada: res.rows.item(0).entrada
-      }
+      };
     });
   }
 

@@ -24,11 +24,11 @@ export class ConductorPage implements OnInit {
 
   ) {
     this.id = this.ruta.snapshot.paramMap.get('id');
-    console.log("ID: ", this.id)
+    console.log('ID: '+ this.id);
     this.db.getConductor(this.id).then(res => {
       this.conductor = res;
-      console.log(this.conductor)
-    })
+      console.log(this.conductor);
+    });
   }
 
 
@@ -52,9 +52,6 @@ export class ConductorPage implements OnInit {
     // para que se salga el mensaje de toast
     this.showToast();
   }
-
-
-
 
   ngOnInit() {
   }
