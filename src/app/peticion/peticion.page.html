@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-back-button slot="start"> </ion-back-button>
+    <ion-icon slot="start" name="exit-outline" (click)="logout()"></ion-icon>
     <ion-title>Peticion</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,16 +9,16 @@
   <ion-list *ngIf="data">
     <div *ngFor="let pasajero of data">
       <ion-item>
+        <ion-avatar slot="start">
+          <img src="https://finley.husd.net/static/finley/img/icons/qlDirectory.gif" alt="https://finley.husd.net/static/finley/img/icons/qlDirectory.gif">
+        </ion-avatar>
         <ion-label>
-          <h5>{{pasajero.pasajero}}</h5>
-          <p>{{pasajero.direccion}}</p>
+          <h5 id="{{pasajero.pasajero}}{{pasajero.id_pedido}}">{{pasajero.pasajero}}</h5>
+          <p id="{{pasajero.pasajero}}{{pasajero.id_pedido}}">Direccion: {{pasajero.direccion}}</p>
+          <p id="{{pasajero.pasajero}}{{pasajero.id_pedido}}">hora: {{pasajero.hora}}</p>
         </ion-label>
-        <!-- <ion-avatar slot="start">
-          <img src="..." alt="avatar="...">
-        </ion-avatar> -->
-        <ion-icon (click)="showToast('pasajero vive en '+pasajero.direccion)" name="compass-outline"></ion-icon>
         <ion-icon (click)="animarYes(pasajero.pasajero+pasajero.id_pedido)"name="checkmark-circle-outline"></ion-icon>
-        <ion-icon (click)="deletePedido(pasajero.id_pedido)"name="close-circle-outline"></ion-icon>
+        <ion-icon (click)="animarNo(pasajero.pasajero, pasajero.id_pedido)"name="close-circle-outline"></ion-icon>
       </ion-item>
     </div>
   </ion-list>

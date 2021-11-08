@@ -33,7 +33,10 @@ export class PeticionPage implements OnInit {
     toast.present();
   }
 
-
+  logout(){
+    localStorage.removeItem('logueado');//borando item storage
+    this.router.navigate(['login/']);
+  }
 
   animarYes(id){
     const  idAnimar = '#' + id;
@@ -46,15 +49,17 @@ export class PeticionPage implements OnInit {
     // para que se salga el mensaje de toast
     this.showToast('Solicitud Aceptada');
   }
-  animarNo(id){
-    const  idAnimar = '#' + id;
+  animarNo(name,id){
+    const  idAnimar = '#' + name+id;
     this.animationCtrl.create()
     .addElement(document.querySelector(idAnimar))
-    .duration(1000)
+    .duration(3000)
     .fromTo('color', 'black', 'red')
     .iterations(1)
     .play();
     // para que se salga el mensaje de toast
+    this.deletePedido(id);
+    this.showToast('peticion Rechazada');
   }
 
   deletePedido(id){
