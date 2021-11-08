@@ -23,11 +23,11 @@
   <ion-list>
     <ion-item>
       <ion-label>viaje duoc: {{conductor.entrada}} </ion-label>
-      <ion-button expand="full" color="success" id="btn-transporte" (click)="storeData('juan','pedro')">PEDIR TRANSPORTE</ion-button>
+      <ion-button expand="full" color="success" id="btn-transporte" (click)="storeData('{{conductor.entrada}}')">PEDIR TRANSPORTE</ion-button>
     </ion-item>
     <ion-item>
       <ion-label>salida duoc: {{conductor.salida}}</ion-label>
-    <ion-button n-button expand="full" color="success" id="btn-transporte" (click)="storeData('juan','pedro')">PEDIR TRANSPORTE</ion-button>
+    <ion-button n-button expand="full" color="success" id="btn-transporte" (click)="storeData('{{conductor.salida}}')">PEDIR TRANSPORTE</ion-button>
 
     </ion-item>
   </ion-list>
