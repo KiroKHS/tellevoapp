@@ -13,10 +13,19 @@
     </ion-card-header>
 
     <ion-card-content>
-        <ion-label>usuario o correo</ion-label> <br>
+        <ion-label>usuario</ion-label> <br>
         <ion-input placeholder="nels.navarro"></ion-input>
         <div>
-          <ion-button expand="full" (click)="showToast()">recuperar</ion-button>
+          <ion-button expand="full" (click)="showToast">recuperar</ion-button>
+        </div>
+    </ion-card-content>
+    <ion-card-content>
+        <ion-label>usuario</ion-label> <br>
+        <ion-input placeholder="nels.navarro" [(ngModel)]="user.nombre"></ion-input><br>
+        <ion-label>clave nueva</ion-label> <br>
+        <ion-input placeholder="nels.navarro" [(ngModel)]="user.clave"></ion-input>
+        <div>
+          <ion-button expand="full" (click)="clave()">cambiar clave</ion-button>
         </div>
     </ion-card-content>
   </ion-card>

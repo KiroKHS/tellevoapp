@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { DbService } from '../service/db.service';
 
@@ -11,28 +11,30 @@ import { DbService } from '../service/db.service';
 })
 export class RecuperarPage implements OnInit {
 
+  user = {nombre: '' , clave:''};
   constructor(
     public toast: ToastController,
-    public formBuilder: FormBuilder,
-    private db: DbService,
     private router: Router,
     ) { }
   // mensaje de recuperacion
   async showToast() {
     const toast = await this.toast.create({
-      message: 'Su clave fue enviada al correo!.',
+      message: 'la solicitud fue enviada',
       duration: 5000
     });
     toast.present();
   }
   ngOnInit() {
   }
-  saveForm(name,clave){
-    this.db.updateClave(clave,name)
-    .then( (res) => {
-      console.log(res);
-      this.router.navigate(['/home']);
+  async clave(){
+    // capturando datos del input
+    localStorage.setItem('userpsw',this.user.nombre);
+    localStorage.setItem('newpsw',this.user.clave);
+    const toast = await this.toast.create({
+      message: 'confirme en correo el cambio',
+      duration: 5000
     });
-  }
+    toast.present();
+}
 
 }
