@@ -49,18 +49,26 @@ export class LoginPage implements OnInit {
       state: {user: this.user}
     };
     if (this.user.nombre.length > 0){
+
       // eslint-disable-next-line @typescript-eslint/naming-convention
       for (const Data of this.data){
         console.log(`Nombre:${Data.nombre}`,'clave:'+Data.clave);
         if(this.user.clave === Data.clave && this.user.nombre === Data.usuname){
+          // * validando aceso
+          localStorage.setItem('logueado','1');
           // * re direcciona al usuario segun su moviliaria
-          if(Data.moviliaria === 0){this.router.navigate(['/home'],navExtras);}
-          else{if (Data.moviliaria ===1){this.router.navigate(['/peticion/']);}}
+          if(Data.moviliaria === 0){
+            localStorage.setItem('username',Data.nombre);
+            localStorage.setItem('casa',Data.direccion);
+            this.router.navigate(['/home'],navExtras);
+        }
+          else{if (Data.moviliaria === 1){this.router.navigate(['/peticion/']);}}
         }
       }
 
     }else{
       this.showToast();
+      localStorage.setItem('logueado','0');
     }
 }
 // enviar al recuperar contrasenia
