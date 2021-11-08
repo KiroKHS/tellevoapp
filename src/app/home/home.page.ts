@@ -50,6 +50,11 @@ verConductor(conductor: any){
   this.navCTRL.navigateForward(['conductor/'],nav);
 }
 
+logout(){
+  localStorage.removeItem('logueado');//borando item storage
+  this.router.navigate(['login/']);
+}
+
 ngOnInit() {
   this.db.dbState().subscribe((res) => {
     if(res){
