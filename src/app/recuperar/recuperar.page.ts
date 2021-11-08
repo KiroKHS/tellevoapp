@@ -18,7 +18,8 @@ export class RecuperarPage implements OnInit {
   constructor(
     public toast: ToastController,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    private db: DbService,
     ) { }
   // mensaje de recuperacion
   async showToast() {
@@ -32,8 +33,10 @@ export class RecuperarPage implements OnInit {
   }
   async clave(){
     // capturando datos del input
-    this.storage.set('userpsw',this.user.nombre);
-    this.storage.set('newpsw',this.user.clave);
+    console.log('nombre: '+this.user.nombre);
+     await this.storage.set('userpsw',this.user.nombre);
+     await this.storage.set('newpsw',this.user.clave);
+    this.db.updateClave();
     const toast = await this.toast.create({
       message: 'confirme en correo el cambio',
       duration: 5000

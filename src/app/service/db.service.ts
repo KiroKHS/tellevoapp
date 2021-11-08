@@ -23,7 +23,7 @@ export class DbService {
   conductorList= new BehaviorSubject([]);
   pediList= new BehaviorSubject([]);
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
+  idadd =3;
   constructor(
     private platform: Platform,
     private sqlite: SQLite,
@@ -110,34 +110,36 @@ export class DbService {
 
   //  * Add pedido
   addPedido(id_conductor, nombrePedido,destino,hora) {
+
     // eslint-disable-next-line prefer-const
-    let data = [id_conductor, nombrePedido,destino,hora];
+    let data = [this.idadd,id_conductor, nombrePedido,destino,hora];
     // ! generar autoinclementable
-    return this.storage.executeSql('INSERT INTO pedidotable VALUES (2,?,?,?,?,0)', data)
+    return this.storage.executeSql('INSERT or IGNORE INTO pedidotable VALUES (?,?,?,?,?,0)', data)
     .then(res => {
       this.getPedido();
+      this.idadd+=1;
     });
   }
 
 
-  getConductor(id): Promise<Conductor> {
-    return this.storage.executeSql('SELECT * FROM conductortable WHERE id_conductor = ?', [id]).then(res => {
-      return {
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            id_conductor: res.rows.item(0).id_conductor,
-            conductor: res.rows.item(0).conductor,
-            costo: res.rows.item(0).costo,
-            salida: res.rows.item(0).salida,
-            entrada: res.rows.item(0).entrada
-      };
-    });
+  async getConductor(id): Promise<Conductor> {
+    const res = await this.storage.executeSql('SELECT * FROM conductortable WHERE id_conductor = ?', [id]);
+    return {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      id_conductor: res.rows.item(0).id_conductor,
+      conductor: res.rows.item(0).conductor,
+      costo: res.rows.item(0).costo,
+      salida: res.rows.item(0).salida,
+      entrada: res.rows.item(0).entrada
+    };
   }
 
   // * Update
-  updateClave() {
-    const name = this.stora.get('userpsw');
-    const psw = this.stora.get('newpsw');
+  async updateClave() {
+    const name = await this.stora.get('userpsw');
+    const psw = await this.stora.get('newpsw');
     const data = [psw,name];
+    console.log(data);
     return this.storage.executeSql('UPDATE usuariotable SET clave = ? WHERE usuname = ?', [data])
     .then(() => {
       this.getUsuario();

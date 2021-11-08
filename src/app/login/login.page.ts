@@ -60,12 +60,13 @@ export class LoginPage implements OnInit {
         if(this.user.clave === Data.clave && this.user.nombre === Data.usuname){
           // * validando aceso
           this.storage.set('logueado','1');
+          this.storage.set('username',Data.nombre);
+          this.storage.set('userid',Data.id);
           // * re direcciona al usuario segun su moviliaria
           if(Data.moviliaria === 0){
-            this.storage.set('username',Data.nombre);
             this.storage.set('casa',Data.direccion);
             this.router.navigate(['/home'],navExtras);
-        }
+          }
           else{if (Data.moviliaria === 1){this.router.navigate(['/peticion/']);}}
         }
       }

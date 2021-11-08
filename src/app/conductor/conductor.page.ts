@@ -56,9 +56,10 @@ export class ConductorPage implements OnInit {
     this.showToast();
   }
 
-  storeData(hora) {
-    const usuario = this.storage.get('username');
-    const direccion = this.storage.get('casa');
+  async storeData(hora) {
+    const usuario = await this.storage.get('username');
+    const direccion = await this.storage.get('casa');
+    console.log('usuario'+usuario,'direccion'+direccion);
     this.db.addPedido(this.conductor.id_conductor, usuario,direccion,hora);
   }
 
