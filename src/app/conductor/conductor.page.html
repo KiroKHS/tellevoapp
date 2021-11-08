@@ -23,11 +23,12 @@
   <ion-list>
     <ion-item>
       <ion-label>viaje duoc: {{conductor.entrada}} </ion-label>
-      <ion-toggle checked [(ngModel)]="pepperoni"></ion-toggle>
+      <ion-button expand="full" color="success" id="btn-transporte" (click)="storeData('juan','pedro')">PEDIR TRANSPORTE</ion-button>
     </ion-item>
     <ion-item>
       <ion-label>salida duoc: {{conductor.salida}}</ion-label>
-      <ion-toggle [(ngModel)]="mushrooms"></ion-toggle>
+    <ion-button n-button expand="full" color="success" id="btn-transporte" (click)="storeData('juan','pedro')">PEDIR TRANSPORTE</ion-button>
+
     </ion-item>
   </ion-list>
 
@@ -36,5 +37,4 @@
 </ion-card>
 <!-- cambiar el color del boton tarrea pendiente -->
 <!-- <ion-button expand="full" (click)="showToast()" color="success">PEDIR TRANSPORTE</ion-button> -->
-<ion-button expand="full" color="success" id="btn-transporte" (click)="storeData('juan','pedro')">PEDIR TRANSPORTE</ion-button>
 </ion-content>
