@@ -1,7 +1,12 @@
+pagina de apoyo
 https://www.positronx.io/ionic-sqlite-database-crud-app-example-tutorial/
+https://github.com/ionic-team/ionic-storage
 
 comando para ejecutar
 
 ionic cordova platform add browser
 npm i -g native-run
-ionic cordova run browser 
+ionic cordova run browser
+
+storage instalado
+npm install @ionic/storage-angular

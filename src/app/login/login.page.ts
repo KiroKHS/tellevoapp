@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { DbService } from './../service/db.service';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-login',
@@ -15,12 +17,13 @@ export class LoginPage implements OnInit {
   constructor(private router: Router,
               public toast: ToastController,
               private db: DbService,
+              private storage: Storage
     ) { }
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   data: any[]=[];
 
-  ngOnInit() {
+  async ngOnInit() {
     this.db.dbState().subscribe((res) => {
       if(res){
         this.db.fetchSongs().subscribe(item => {
@@ -31,6 +34,7 @@ export class LoginPage implements OnInit {
         });
       }
     });
+    await this.storage.create();
   }
 
 
@@ -55,11 +59,11 @@ export class LoginPage implements OnInit {
         console.log(`Nombre:${Data.nombre}`,'clave:'+Data.clave);
         if(this.user.clave === Data.clave && this.user.nombre === Data.usuname){
           // * validando aceso
-          localStorage.setItem('logueado','1');
+          this.storage.set('logueado','1');
           // * re direcciona al usuario segun su moviliaria
           if(Data.moviliaria === 0){
-            localStorage.setItem('username',Data.nombre);
-            localStorage.setItem('casa',Data.direccion);
+            this.storage.set('username',Data.nombre);
+            this.storage.set('casa',Data.direccion);
             this.router.navigate(['/home'],navExtras);
         }
           else{if (Data.moviliaria === 1){this.router.navigate(['/peticion/']);}}
@@ -68,7 +72,7 @@ export class LoginPage implements OnInit {
 
     }else{
       this.showToast();
-      localStorage.setItem('logueado','0');
+      this.storage.set('logueado','0');
     }
 }
 // enviar al recuperar contrasenia

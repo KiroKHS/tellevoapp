@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AnimationController, NavController, ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DbService } from './../service/db.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-peticion',
@@ -21,6 +22,7 @@ export class PeticionPage implements OnInit {
     private router: Router,
     private db: DbService,
     public formBuilder: FormBuilder,
+    private storage: Storage
     ) { }
 
 
@@ -33,10 +35,11 @@ export class PeticionPage implements OnInit {
     toast.present();
   }
 
-  logout(){
-    localStorage.removeItem('logueado');//borando item storage
-    this.router.navigate(['login/']);
-  }
+
+logout(): void{
+  this.storage.set('logueado','0');//borando item storage
+  this.router.navigate(['login/']);
+}
 
   animarYes(id){
     const  idAnimar = '#' + id;

@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
+import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class DbService {
     private sqlite: SQLite,
     private httpClient: HttpClient,
     private sqlPorter: SQLitePorter,
+    private stora: Storage,
   ) {
     this.platform.ready().then(() => {
       this.sqlite.create({
@@ -132,9 +134,12 @@ export class DbService {
   }
 
   // * Update
-  updateClave(clave, name) {
-    return this.storage.executeSql(`UPDATE usuariotable SET clave = ? WHERE usuname = ${name}`, clave)
-    .then(data => {
+  updateClave() {
+    const name = this.stora.get('userpsw');
+    const psw = this.stora.get('newpsw');
+    const data = [psw,name];
+    return this.storage.executeSql('UPDATE usuariotable SET clave = ? WHERE usuname = ?', [data])
+    .then(() => {
       this.getUsuario();
     });
   }

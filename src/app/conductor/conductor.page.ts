@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AnimationController, ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 import { DbService } from './../service/db.service';
 
 @Component({
@@ -11,7 +12,8 @@ import { DbService } from './../service/db.service';
 })
 export class ConductorPage implements OnInit {
 
-  @ViewChild('btnpedir', { read: ElementRef }) btnpedir: ElementRef;
+  @ViewChild('btnpedir', { read: ElementRef })
+  btnpedir: ElementRef;
   editForm: FormGroup;
   id: any;
   conductor: any;
@@ -21,6 +23,7 @@ export class ConductorPage implements OnInit {
     public toast: ToastController,
     private animationCtrl: AnimationController,
     public formBuilder: FormBuilder,
+    private storage: Storage
 
   ) {
     this.id = this.ruta.snapshot.paramMap.get('id');
@@ -54,8 +57,8 @@ export class ConductorPage implements OnInit {
   }
 
   storeData(hora) {
-    const usuario = localStorage.getItem('username');
-    const direccion = localStorage.getItem('casa');
+    const usuario = this.storage.get('username');
+    const direccion = this.storage.get('casa');
     this.db.addPedido(this.conductor.id_conductor, usuario,direccion,hora);
   }
 

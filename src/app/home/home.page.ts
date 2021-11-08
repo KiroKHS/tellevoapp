@@ -4,6 +4,8 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { MenuController, NavController, ToastController } from '@ionic/angular';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DbService } from './../service/db.service';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-home',
@@ -25,7 +27,7 @@ export class HomePage {
     private db: DbService,
     private toast: ToastController,
     public formBuilder: FormBuilder,
-
+    private storage: Storage
   )
 
   // capturando datos del login
@@ -51,7 +53,7 @@ verConductor(conductor: any){
 }
 
 logout(){
-  localStorage.removeItem('logueado');//borando item storage
+  this.storage.set('logueado','0');//borando item storage
   this.router.navigate(['login/']);
 }
 
@@ -65,4 +67,4 @@ ngOnInit() {
   });
 }
 
-}
+};

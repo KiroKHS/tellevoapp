@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { DbService } from '../service/db.service';
+import { Storage } from '@ionic/storage-angular';
+
+
 
 @Component({
   selector: 'app-recuperar',
@@ -15,6 +18,7 @@ export class RecuperarPage implements OnInit {
   constructor(
     public toast: ToastController,
     private router: Router,
+    private storage: Storage
     ) { }
   // mensaje de recuperacion
   async showToast() {
@@ -28,8 +32,8 @@ export class RecuperarPage implements OnInit {
   }
   async clave(){
     // capturando datos del input
-    localStorage.setItem('userpsw',this.user.nombre);
-    localStorage.setItem('newpsw',this.user.clave);
+    this.storage.set('userpsw',this.user.nombre);
+    this.storage.set('newpsw',this.user.clave);
     const toast = await this.toast.create({
       message: 'confirme en correo el cambio',
       duration: 5000
