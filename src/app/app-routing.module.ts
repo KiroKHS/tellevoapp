@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    //* agregando guard
+    canLoad: [AuthGuard]
   },
   {
     path: '',
@@ -17,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'conductor/:id',
-    loadChildren: () => import('./conductor/conductor.module').then( m => m.ConductorPageModule)
+    loadChildren: () => import('./conductor/conductor.module').then( m => m.ConductorPageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'recuperar',
@@ -25,7 +29,8 @@ const routes: Routes = [
   },
   {
     path: 'peticion',
-    loadChildren: () => import('./peticion/peticion.module').then( m => m.PeticionPageModule)
+    loadChildren: () => import('./peticion/peticion.module').then( m => m.PeticionPageModule),
+    canLoad: [AuthGuard]
   },
 ];
 
