@@ -111,7 +111,7 @@ export class DbService {
     // eslint-disable-next-line prefer-const
     let data = [id_conductor, nombrePedido,destino,hora];
     // ! generar autoinclementable
-    return this.storage.executeSql('INSERT INTO pedidortable VALUES (2,?,?,?,?,0)', data)
+    return this.storage.executeSql('INSERT INTO pedidotable VALUES (2,?,?,?,?,0)', data)
     .then(res => {
       this.getPedido();
     });
