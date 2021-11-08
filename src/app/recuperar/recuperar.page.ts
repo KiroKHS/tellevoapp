@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { DbService } from '../service/db.service';
 
 @Component({
   selector: 'app-recuperar',
@@ -8,7 +11,12 @@ import { ToastController } from '@ionic/angular';
 })
 export class RecuperarPage implements OnInit {
 
-  constructor(public toast: ToastController) { }
+  constructor(
+    public toast: ToastController,
+    public formBuilder: FormBuilder,
+    private db: DbService,
+    private router: Router,
+    ) { }
   // mensaje de recuperacion
   async showToast() {
     const toast = await this.toast.create({
@@ -18,6 +26,13 @@ export class RecuperarPage implements OnInit {
     toast.present();
   }
   ngOnInit() {
+  }
+  saveForm(name,clave){
+    this.db.updateClave(clave,name)
+    .then( (res) => {
+      console.log(res);
+      this.router.navigate(['/home']);
+    });
   }
 
 }

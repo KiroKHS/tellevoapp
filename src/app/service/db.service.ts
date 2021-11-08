@@ -132,13 +132,12 @@ export class DbService {
   }
 
   // * Update
-  // updateSong(id, song: Song) {
-  //   let data = [song.artist_name, song.song_name];
-  //   return this.storage.executeSql(`UPDATE songtable SET artist_name = ?, song_name = ? WHERE id = ${id}`, data)
-  //   .then(data => {
-  //     this.getSongs();
-  //   })
-  // }
+  updateClave(clave, name) {
+    return this.storage.executeSql(`UPDATE usuariotable SET clave = ? WHERE usuname = ${name}`, clave)
+    .then(data => {
+      this.getUsuario();
+    });
+  }
 
   // Delete
   async deletePedido(id) {
