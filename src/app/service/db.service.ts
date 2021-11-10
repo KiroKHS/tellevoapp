@@ -133,6 +133,20 @@ export class DbService {
       entrada: res.rows.item(0).entrada
     };
   }
+// * retorna datos del usuario
+  async getPerfil(): Promise<Usuario> {
+    const id= await this.stora.get('userid');
+    const res = await this.storage.executeSql('SELECT * FROM usuariotable WHERE id = ?', [id]);
+    return {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      id: res.rows.item(0).id,
+      nombre: res.rows.item(0).nombre,
+      direccion: res.rows.item(0).direccion,
+      usuname: res.rows.item(0).usuname,
+      moviliaria: res.rows.item(0).moviliaria,
+      clave: res.rows.item(0).clave
+    };
+  }
 
   // * Update
   //* arreglado

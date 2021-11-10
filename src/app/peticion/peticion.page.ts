@@ -84,7 +84,7 @@ logout(): void{
       this.currentImage = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
       // Handle error
-      console.log("Camera issue:" + err);
+      console.log('Camera issue:' + err);
     });
   }
 

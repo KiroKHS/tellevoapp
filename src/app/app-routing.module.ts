@@ -31,7 +31,11 @@ const routes: Routes = [
     path: 'peticion',
     loadChildren: () => import('./peticion/peticion.module').then( m => m.PeticionPageModule),
     canLoad: [AuthGuard]
+  },  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+
 ];
 
 @NgModule({
