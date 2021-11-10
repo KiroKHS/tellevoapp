@@ -19,9 +19,10 @@ export class AuthGuard implements CanLoad {
     }else{
       if (await logueado === '0'){
         this.router.navigate(['login/']);
-        return false;}
-        //? redirije al usuario
-        return false;
+        return false;}else{
+          //? redirije al usuario
+          return false;
+        }
     }
   }
 }

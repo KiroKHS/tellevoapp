@@ -23,7 +23,7 @@ export class DbService {
   conductorList= new BehaviorSubject([]);
   pediList= new BehaviorSubject([]);
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  idadd =3;
+  idadd =3;// ! variable para el uato inclementable
   constructor(
     private platform: Platform,
     private sqlite: SQLite,
@@ -108,12 +108,12 @@ export class DbService {
     });
   }
 
-  //  * Add pedido
+  //  * Add pedido funciona y se auto inclementa
   addPedido(id_conductor, nombrePedido,destino,hora) {
 
     // eslint-disable-next-line prefer-const
     let data = [this.idadd,id_conductor, nombrePedido,destino,hora];
-    // ! generar autoinclementable
+
     return this.storage.executeSql('INSERT or IGNORE INTO pedidotable VALUES (?,?,?,?,?,0)', data)
     .then(res => {
       this.getPedido();
@@ -121,7 +121,7 @@ export class DbService {
     });
   }
 
-
+// * retorna datos del conductor
   async getConductor(id): Promise<Conductor> {
     const res = await this.storage.executeSql('SELECT * FROM conductortable WHERE id_conductor = ?', [id]);
     return {
@@ -135,18 +135,18 @@ export class DbService {
   }
 
   // * Update
+  //* arreglado
   async updateClave() {
     const name = await this.stora.get('userpsw');
     const psw = await this.stora.get('newpsw');
-    const data = [psw,name];
-    console.log(data);
-    return this.storage.executeSql('UPDATE usuariotable SET clave = ? WHERE usuname = ?', [data])
+    return this.storage.executeSql('UPDATE usuariotable SET clave = ? WHERE usuname = ?', [psw,name])
     .then(() => {
       this.getUsuario();
     });
   }
 
-  // Delete
+  // * Delete
+  // * funciona
   async deletePedido(id) {
     const _ = await this.storage.executeSql('DELETE FROM pedidotable WHERE id_pedido = ?', [id]);
     this.getPedido();

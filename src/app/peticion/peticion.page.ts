@@ -4,7 +4,7 @@ import { AnimationController, NavController, ToastController } from '@ionic/angu
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DbService } from './../service/db.service';
 import { Storage } from '@ionic/storage';
-
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 @Component({
   selector: 'app-peticion',
   templateUrl: './peticion.page.html',
@@ -13,6 +13,7 @@ import { Storage } from '@ionic/storage';
 export class PeticionPage implements OnInit {
 
   data: any[]=[];
+  currentImage: any;
 
   constructor(
     private navCTRL: NavController,
@@ -22,7 +23,8 @@ export class PeticionPage implements OnInit {
     private router: Router,
     private db: DbService,
     public formBuilder: FormBuilder,
-    private storage: Storage
+    private storage: Storage,
+    private camera: Camera,
     ) { }
 
 
@@ -70,6 +72,21 @@ logout(): void{
     });
   }
 
+  takePicture() {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.currentImage = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      // Handle error
+      console.log("Camera issue:" + err);
+    });
+  }
 
 
   ngOnInit() {

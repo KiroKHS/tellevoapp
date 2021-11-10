@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  // creando variables usuarios
+  // * creando variables usuarios
   // eslint-disable-next-line @typescript-eslint/quotes
   user = {nombre: "", clave: ""};
   constructor(private router: Router,
@@ -29,8 +29,6 @@ export class LoginPage implements OnInit {
         this.db.fetchSongs().subscribe(item => {
           this.data = item;
           console.log(this.data);
-
-          // console.log(this.data[0].form('Sett'));
         });
       }
     });
@@ -56,7 +54,7 @@ export class LoginPage implements OnInit {
 
       // eslint-disable-next-line @typescript-eslint/naming-convention
       for (const Data of this.data){
-        console.log(`Nombre:${Data.nombre}`,'clave:'+Data.clave);
+        console.log(`Nombre: ${Data.nombre}`,'clave: '+Data.clave);
         if(this.user.clave === Data.clave && this.user.nombre === Data.usuname){
           // * validando aceso
           this.storage.set('logueado','1');
@@ -84,5 +82,5 @@ export class LoginPage implements OnInit {
     };
     //re direcciona al usuario
     this.router.navigate(['/recuperar',navExtras]);
-}
+  }
 }

@@ -1,7 +1,7 @@
 pagina de apoyo
 https://www.positronx.io/ionic-sqlite-database-crud-app-example-tutorial/
 https://github.com/ionic-team/ionic-storage
-
+https://ionicframework.com/docs/developer-resources/guides/first-app-v4/ios-android-camera
 comando para ejecutar
 
 ionic cordova platform add browser

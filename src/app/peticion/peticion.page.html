@@ -1,11 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon slot="start" name="exit-outline" (click)="logout()"></ion-icon>
+    <ion-icon style="zoom: 2;" slot="start" name="exit-outline" (click)="logout()"></ion-icon>
+    <ion-icon style="zoom: 2;" slot="end" name="person-circle-outline"></ion-icon>
     <ion-title>Peticion</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
   <ion-list *ngIf="data">
     <div *ngFor="let pasajero of data">
       <ion-item>
@@ -22,6 +24,13 @@
       </ion-item>
     </div>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="takePicture()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <img [src]="currentImage" *ngIf="currentImage">
 </ion-content>
 
 
