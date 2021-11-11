@@ -13,7 +13,7 @@ export class PerfilPage implements OnInit {
 
   //* variables
   perfil: any;
-  currentImage: any;
+  currentImage: any='../../assets/defaut-perfil.png';
 
   constructor(
     private camera: Camera,
@@ -23,8 +23,9 @@ export class PerfilPage implements OnInit {
   ) {
     this.db.getPerfil().then(res => {
       this.perfil = res;
-      console.log('Perfil: '+this.perfil);
+      console.log('Perfil: '+this.perfil.avatar);
     });
+
   }
 
   takePicture() {

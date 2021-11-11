@@ -4,6 +4,7 @@ export class Usuario {
   clave: string;
   nombre: string;
   direccion: string;
+  avatar: string;
   moviliaria: number;
 
 }

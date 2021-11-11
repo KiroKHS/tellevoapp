@@ -81,6 +81,7 @@ export class DbService {
             clave: res.rows.item(i).clave,
             nombre: res.rows.item(i).nombre,
             direccion: res.rows.item(i).direccion,
+            avatar: res.rows.item(i).avatar,
             moviliaria: res.rows.item(i).moviliaria
            });
         }
@@ -144,7 +145,8 @@ export class DbService {
       direccion: res.rows.item(0).direccion,
       usuname: res.rows.item(0).usuname,
       moviliaria: res.rows.item(0).moviliaria,
-      clave: res.rows.item(0).clave
+      clave: res.rows.item(0).clave,
+      avatar: res.rows.item(0).avatar
     };
   }
 

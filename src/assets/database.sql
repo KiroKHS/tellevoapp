@@ -1,19 +1,21 @@
-
+---------------- ? tabla usuario
 CREATE TABLE IF NOT EXISTS usuariotable(
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	usuname TEXT,
 	clave TEXT,
 	nombre TEXT,
 	direccion TEXT,
-	moviliaria INTEGER
+	moviliaria INTEGER,
+	avatar TEXT
 );
 
---moviliaria 1=true 0=false
-INSERT or IGNORE INTO usuariotable VALUES (1, 'sett', 'mami','Sett','Noxus',1);
-INSERT or IGNORE INTO usuariotable VALUES (2, 'rak.an', '1234','Rakan','jonia',1);
-INSERT or IGNORE INTO usuariotable VALUES (3, 'xayah', 'putorakan','Xayah','jonia',0);
-INSERT or IGNORE INTO usuariotable VALUES (4, 'sona', 'mute','Sona','demacia',0);
+-- !moviliaria 1=true 0=false
+INSERT or IGNORE INTO usuariotable VALUES (1, 'sett', 'mami','Sett','Noxus',1,null);
+INSERT or IGNORE INTO usuariotable VALUES (2, 'rak.an', '1234','Rakan','jonia',1,null);
+INSERT or IGNORE INTO usuariotable VALUES (3, 'xayah', 'putorakan','Xayah','jonia',0,null);
+INSERT or IGNORE INTO usuariotable VALUES (4, 'sona', 'mute','Sona','demacia',0,null);
 
+---------------------- ? tabla conductor
 CREATE TABLE IF NOT EXISTS conductortable(
 	id_conductor INTEGER PRIMARY KEY AUTOINCREMENT,
 	conductor TEXT,
@@ -22,11 +24,11 @@ CREATE TABLE IF NOT EXISTS conductortable(
 	costo INTEGER
 );
 
---condutor es la primary key usuariotable
+-- ! condutor es la primary key usuariotable
 INSERT or IGNORE INTO conductortable VALUES(1,'sett','8:30','12:15',1000);
 INSERT or IGNORE INTO conductortable VALUES(2,'rakan','12:15','17:30',1200);
-
---tabla rellena el usuario sin auto, pero lo vera el conductor
+-------------? tabla pedido
+--! tabla rellena el usuario sin auto, pero lo vera el conductor
 --estado aceptado=1 rechazado=0 sinrevisar=2
 CREATE TABLE IF NOT EXISTS pedidotable(
 	id_pedido INTEGER PRIMARY KEY AUTOINCREMENT,

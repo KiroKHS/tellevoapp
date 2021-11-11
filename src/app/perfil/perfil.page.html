@@ -5,18 +5,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card>
-    <ion-card-content *ngIf="perfil">
-      <ion-label>usuario {{perfil.nombre}}</ion-label>
-      <div class="camara">
-        <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-          <ion-fab-button (click)="takePicture()">
-            <ion-icon name="camera"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
-        <img [src]="currentImage" *ngIf="currentImage">
-      </div>
-    </ion-card-content>
-</ion-card>
+<ion-content *ngIf="perfil">
+<div class="perfil">
+
+  <img class="perfilImg" [src]="currentImage" *ngIf="currentImage"><br>
+  <ion-label>usuario {{perfil.nombre}}</ion-label>
+  <div class="camara">
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-button (click)="takePicture()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-button>
+    </ion-fab>
+  </div>
+</div>
+
 </ion-content>
