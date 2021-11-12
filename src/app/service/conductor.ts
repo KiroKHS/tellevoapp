@@ -4,5 +4,7 @@ export class Conductor {
   conductor: string;
   entrada: string;
   salida: string;
+  silla: string;
+  matricula: string;
   costo: number;
 }

@@ -82,6 +82,7 @@ export class DbService {
             nombre: res.rows.item(i).nombre,
             direccion: res.rows.item(i).direccion,
             avatar: res.rows.item(i).avatar,
+            horario: res.rows.item(i).horario,
             moviliaria: res.rows.item(i).moviliaria
            });
         }
@@ -89,7 +90,7 @@ export class DbService {
       this.usuarioList.next(items);
     });
   }
-  // Get list pedido
+  //* Get list pedido
   getPedido(){
     return this.storage.executeSql('SELECT * FROM pedidotable', []).then(res => {
       const items: Pedido[] = [];
@@ -131,6 +132,8 @@ export class DbService {
       conductor: res.rows.item(0).conductor,
       costo: res.rows.item(0).costo,
       salida: res.rows.item(0).salida,
+      silla: res.rows.item(0).silla,
+      matricula: res.rows.item(0).matricula,
       entrada: res.rows.item(0).entrada
     };
   }
@@ -146,16 +149,30 @@ export class DbService {
       usuname: res.rows.item(0).usuname,
       moviliaria: res.rows.item(0).moviliaria,
       clave: res.rows.item(0).clave,
+      horario: res.rows.item(0).horario,
       avatar: res.rows.item(0).avatar
     };
   }
 
   // * Update
-  //* arreglado
   async updateClave() {
     const name = await this.stora.get('userpsw');
     const psw = await this.stora.get('newpsw');
     return this.storage.executeSql('UPDATE usuariotable SET clave = ? WHERE usuname = ?', [psw,name])
+    .then(() => {
+      this.getUsuario();
+    });
+  }
+  async updateAvatar(avatar) {
+    const id= await this.stora.get('userid');
+    return this.storage.executeSql('UPDATE usuariotable SET avatar = ? WHERE id = ?', [avatar,id])
+    .then(() => {
+      this.getUsuario();
+    });
+  }
+  async updateDireccion(dirrecion) {
+    const id= await this.stora.get('userid');
+    return this.storage.executeSql('UPDATE usuariotable SET direccion = ? WHERE id = ?', [dirrecion,id])
     .then(() => {
       this.getUsuario();
     });

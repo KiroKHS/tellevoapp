@@ -5,6 +5,7 @@ export class Usuario {
   nombre: string;
   direccion: string;
   avatar: string;
+  horario: string;
   moviliaria: number;
 
 }
