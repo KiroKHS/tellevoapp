@@ -13,13 +13,12 @@
 <!-- datos del conductor -->
 <ion-card-content>
 
-    <img width="175px" src="" alt="avatar"><br>
+    <img src="../../assets/defaut-perfil.png" alt="avatar"><br>
 
-  <ion-label><b>Acientos:</b> </ion-label><br>
-  <ion-label><b>Direccion:</b></ion-label><br>
-  <ion-label><b>matricula:</b> </ion-label><br>
+  <ion-label><b>Acientos: 3</b> </ion-label><br>
+  <ion-label><b>matricula: {{conductor.matricula}}</b> </ion-label><br>
   <ion-label  color="success"><b>costo $ {{conductor.costo}} </b></ion-label>
-<!-- los cheack -->
+
   <ion-list>
     <ion-item>
       <ion-label>viaje duoc: {{conductor.entrada}} </ion-label>
@@ -32,9 +31,6 @@
     </ion-item>
   </ion-list>
 
-    <!-- solicitar viaje -->
   </ion-card-content>
 </ion-card>
-<!-- cambiar el color del boton tarrea pendiente -->
-<!-- <ion-button expand="full" (click)="showToast()" color="success">PEDIR TRANSPORTE</ion-button> -->
 </ion-content>

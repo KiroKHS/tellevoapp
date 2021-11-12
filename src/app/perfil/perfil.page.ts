@@ -13,8 +13,8 @@ export class PerfilPage implements OnInit {
 
   //* variables
   perfil: any;
-  currentImage: any='../../assets/defaut-perfil.png';
-
+  currentImage: any;
+  user: {direccion: any};
   constructor(
     private camera: Camera,
     private storage: Storage,
@@ -23,7 +23,8 @@ export class PerfilPage implements OnInit {
   ) {
     this.db.getPerfil().then(res => {
       this.perfil = res;
-      console.log('Perfil: '+this.perfil.avatar);
+      console.log('Perfil: '+this.perfil);
+      this.currentImage= this.perfil.avatar;
     });
 
   }
@@ -38,12 +39,15 @@ export class PerfilPage implements OnInit {
 
     this.camera.getPicture(options).then((imageData) => {
       this.currentImage = 'data:image/jpeg;base64,' + imageData;
+      this.db.updateAvatar(this.currentImage);
     }, (err) => {
       // ! mensaje error
       console.log('Camera error: ' + err);
     });
   }
-
+  cambiardireccion(){
+    this.db.updateDireccion(this.user.direccion);
+  }
 
 
   ngOnInit() {

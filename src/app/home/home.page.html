@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-icon style="zoom: 2;"  slot="start" name="exit-outline" (click)="logout()"></ion-icon>
-    <ion-icon style="zoom: 2;" slot="end" name="person-circle-outline" [routerLink]="['/perfil/']" ></ion-icon>
+    <ion-icon style="zoom: 2; margin-right: 5px;"  slot="start" name="exit-outline" (click)="logout()"></ion-icon>
+    <ion-icon style="zoom: 2; margin-right: 5px;" slot="end" name="person-circle-outline" [routerLink]="['/perfil/']" ></ion-icon>
     <ion-title>
       <ion-label>Bienvenido {{data.nombre}}</ion-label>
     </ion-title>
@@ -12,6 +12,9 @@
 <ion-content>
   <div *ngFor="let data of ddata">
     <ion-item  *ngIf="data.moviliaria === 1">
+      <ion-avatar slot="start">
+        <img src="{{data.avatar}}" alt="https://finley.husd.net/static/finley/img/icons/qlDirectory.gif">
+      </ion-avatar>
       <ion-label>
         <h5>{{data.nombre}}</h5>
         <p>{{data.direccion}}</p>

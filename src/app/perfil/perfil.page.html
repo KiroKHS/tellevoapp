@@ -8,15 +8,20 @@
 <ion-content *ngIf="perfil">
 <div class="perfil">
 
-  <img class="perfilImg" [src]="currentImage" *ngIf="currentImage"><br>
-  <ion-label>usuario {{perfil.nombre}}</ion-label>
-  <div class="camara">
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-      <ion-button (click)="takePicture()">
-        <ion-icon name="camera"></ion-icon>
-      </ion-button>
-    </ion-fab>
-  </div>
+  <ion-item>
+    <img class="perfilImg" [src]="currentImage" >
+    <br>
+    <ion-button expand="block" (click)="takePicture()">
+      <ion-icon name="camera">Editar</ion-icon>
+    </ion-button>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label>Nombre: {{perfil.nombre}}</ion-label>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label >Direccion: {{perfil.direccion}} </ion-label>
+  </ion-item>
 </div>
-
 </ion-content>
