@@ -22,8 +22,8 @@ describe('LoginPage', () => {
   //   expect(component).toBeTruthy();
   // });
 
-  it('Login',()=> {
-    expect(component)
-  })
+  it('Prueba Login',()=> {
+    expect(component.loginTest('sett','mami')).toBeTruthy();
+  });
 
 });

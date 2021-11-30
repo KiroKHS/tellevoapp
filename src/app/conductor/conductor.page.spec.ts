@@ -23,7 +23,7 @@ describe('ConductorPage', () => {
   // });
 
   it('Datos valor nulo', () =>{
-    expect(component.id).toBeNull()
+    expect(component.id).toBeNull();
   });
 
 });
