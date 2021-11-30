@@ -18,7 +18,12 @@ describe('ConductorPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  // it('should create', () => {
+  //   expect(component).toBeTruthy();
+  // });
+
+  it('Datos valor nulo', () =>{
+    expect(component.id).toBeNull()
   });
+
 });
