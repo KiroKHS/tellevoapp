@@ -43,5 +43,10 @@ export class RecuperarPage implements OnInit {
     });
     toast.present();
 }
+async testClave(nombre: string, clave: string){
+  await this.storage.set('userpsw',nombre);
+  await this.storage.set('newpsw',clave);
+  this.db.updateClave();
+}
 
 }

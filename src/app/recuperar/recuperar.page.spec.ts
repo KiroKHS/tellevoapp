@@ -18,7 +18,7 @@ describe('RecuperarPage', () => {
     fixture.detectChanges();
   }));
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+   it('prueba de cambio de clave', () => {
+     expect(component.testClave('sett','1234')).toBeTruthy();
+   });
 });
