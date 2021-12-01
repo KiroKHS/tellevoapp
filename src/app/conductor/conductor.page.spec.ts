@@ -22,8 +22,8 @@ describe('ConductorPage', () => {
   //   expect(component).toBeTruthy();
   // });
 
-  it('Datos valor nulo', () =>{
-    expect(component.id).toBeNull();
-  });
+  // it('Datos valor nulo', () =>{
+  //   expect(component.id).toBeNull();
+  // });
 
 });

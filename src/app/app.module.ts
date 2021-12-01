@@ -15,12 +15,13 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { Camera } from '@ionic-native/camera/ngx'; 
-
+import { Router } from '@angular/router';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,IonicStorageModule.forRoot()],
-  providers: [SQLite,SQLitePorter,Camera,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [Router,SQLite,SQLitePorter,Camera,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
+
 export class AppModule {}

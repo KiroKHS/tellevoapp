@@ -74,17 +74,20 @@ export class LoginPage implements OnInit {
       this.storage.set('logueado','0');
     }
 }
+suma(n1,n2){
+  return n1+n2;
+}
 
 loginTest(usuario, clave){
-  this.user.nombre = usuario;
-  this.user.clave = clave;
+   usuario;
+   clave;
   if (this.user.nombre.length > 0){
     // eslint-disable-next-line @typescript-eslint/naming-convention
     for (const Data of this.data){
-      if(this.user.clave === Data.clave && this.user.nombre === Data.usuname){
-        return true;
+      if(clave === Data.clave && usuario === Data.usuname){
+        return 1;
       }else{
-        return false;
+        return 0;
       }
     }
 

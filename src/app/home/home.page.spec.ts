@@ -18,7 +18,18 @@ describe('HomePage', () => {
     fixture.detectChanges();
   }));
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('Bienvenido correcto', () => {
+    let dom = fixture.debugElement.nativeElement;
+    component.data ={
+      nombre: 'test',clave: 'test'
+    }
+    let titulo =  'Bienvenido '+ component.data.nombre
+    //deberia dar titulo 'Bienvenido [nombre]'
+    expect(dom.querySelector("ion-label").textContent).toContain(titulo);
+  });
+  
 });
