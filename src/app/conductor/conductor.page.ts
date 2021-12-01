@@ -56,6 +56,11 @@ export class ConductorPage implements OnInit {
     this.showToast();
   }
 
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async addPetiTest(id_cond: number, usuario: string, direccion: string, hora: string){
+    this.db.addPedido(id_cond, usuario, direccion, hora);
+  }
+
   async storeData(hora) {
     const usuario = await this.storage.get('username');
     const direccion = await this.storage.get('casa');
