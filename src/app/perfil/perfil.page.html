@@ -23,5 +23,14 @@
   <ion-item>
     <ion-label >Direccion: {{perfil.direccion}} </ion-label>
   </ion-item>
+  <ion-item *ngIf="perfil.moviliaria === 1">
+    <ion-label>Costo: {{conductor.costo}}</ion-label>
+  </ion-item>
+  <ion-item *ngIf="perfil.moviliaria === 1">
+    <ion-label>Cambiar costo</ion-label>
+    <ion-input type="number" [(ngModel)]="costo"></ion-input>
+    <ion-button color="danger" (click)="cambiarCosto(costo,perfil.id)">Nuevo costo</ion-button>
+  </ion-item>
+
 </div>
 </ion-content>
