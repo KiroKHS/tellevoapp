@@ -170,9 +170,11 @@ export class DbService {
       this.getUsuario();
     });
   }
-  async updateDireccion(dirrecion) {
-    const id= await this.stora.get('userid');
-    return this.storage.executeSql('UPDATE usuariotable SET direccion = ? WHERE id = ?', [dirrecion,id])
+  async updateCosto(conductor: number, costo: number) {
+
+    return this.storage.executeSql(
+      'UPDATE conductortable SET costo = ? WHERE id_conductor = ?', [costo,conductor]
+      )
     .then(() => {
       this.getUsuario();
     });
