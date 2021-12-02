@@ -28,11 +28,13 @@ export class PerfilPage implements OnInit {
       console.log('Perfil: '+this.perfil);
       this.currentImage= this.perfil.avatar;
     });
-    console.log('ID: '+ this.perfil.id);
-    this.db.getConductor(this.perfil.id).then(res => {
-      this.conductor = res;
-      console.log(this.conductor);
-    });
+    if (this.perfil.moviliaria === 1) {
+      console.log('ID: '+ this.perfil.id);
+      this.db.getConductor(this.perfil.id).then(res => {
+        this.conductor = res;
+        console.log(this.conductor);
+      });
+    }
 
   }
 
