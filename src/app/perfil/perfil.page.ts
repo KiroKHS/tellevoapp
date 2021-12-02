@@ -15,7 +15,7 @@ export class PerfilPage implements OnInit {
   //* variables
   perfil: any;
   currentImage: any;
-  user: {direccion: any};
+  costo: number;
   conductor: any;
   constructor(
     private camera: Camera,
