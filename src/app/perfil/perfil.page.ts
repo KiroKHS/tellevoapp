@@ -1,3 +1,4 @@
+import { Conductor } from './../service/conductor';
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -15,6 +16,7 @@ export class PerfilPage implements OnInit {
   perfil: any;
   currentImage: any;
   user: {direccion: any};
+  conductor: any;
   constructor(
     private camera: Camera,
     private storage: Storage,
@@ -25,6 +27,11 @@ export class PerfilPage implements OnInit {
       this.perfil = res;
       console.log('Perfil: '+this.perfil);
       this.currentImage= this.perfil.avatar;
+    });
+    console.log('ID: '+ this.perfil.id);
+    this.db.getConductor(this.perfil.id).then(res => {
+      this.conductor = res;
+      console.log(this.conductor);
     });
 
   }
@@ -45,8 +52,21 @@ export class PerfilPage implements OnInit {
       console.log('Camera error: ' + err);
     });
   }
-  cambiardireccion(){
-    this.db.updateDireccion(this.user.direccion);
+  async cambiarCosto(costo: number , conductor: number = null){
+    if (costo > 0 && costo < 1500 ) {
+      if (conductor) {
+        this.db.updateCosto(conductor, costo);
+      } else {
+        const conductor2 = this.perfil.id;
+        if (conductor) {
+        this.db.updateCosto(await conductor2, costo);
+        } else {
+          console.log('Error en conductor '+ conductor);
+        }
+      }
+    } else {
+      console.log('Error costo: '+costo +' debe ser entre 0, 1500');
+    }
   }
 
 
