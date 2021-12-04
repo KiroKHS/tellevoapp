@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-back-button slot="start">Volver</ion-back-button>
-    <ion-title>perfil {{perfil.nombre}}</ion-title>
+    <ion-title *ngIf="perfil" >perfil {{perfil.nombre}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +9,9 @@
 <div class="perfil">
 
   <ion-item>
-    <img class="perfilImg" [src]="currentImage" >
+    <ion-avatar>
+      <img class="perfilImg" [src]="currentImage" >
+    </ion-avatar>
     <br>
     <ion-button expand="block" (click)="takePicture()">
       <ion-icon name="camera">Editar</ion-icon>
@@ -24,12 +26,17 @@
     <ion-label >Direccion: {{perfil.direccion}} </ion-label>
   </ion-item>
   <ion-item *ngIf="perfil.moviliaria === 1">
-    <ion-label>Costo: {{conductor.costo}}</ion-label>
+    <ion-label>Eres conductor</ion-label>
+    <ion-button (click)="datosconductor(perfil.id)">Ver datos</ion-button>
   </ion-item>
-  <ion-item *ngIf="perfil.moviliaria === 1">
-    <ion-label>Cambiar costo</ion-label>
-    <ion-input type="number" [(ngModel)]="costo"></ion-input>
-    <ion-button color="danger" (click)="cambiarCosto(costo,perfil.id)">Nuevo costo</ion-button>
+  <ion-item *ngIf="perfil.moviliaria === 1 && conductor">
+    <ion-label>Costo: {{conductor.costo}}</ion-label>
+
+  </ion-item>
+  <ion-item *ngIf="perfil.moviliaria === 1 && conductor">
+    <ion-label>Cambiar costo: </ion-label>
+    <ion-input type="number" [(ngModel)]="costo" value="{{conductor.costo}}"></ion-input>
+    <ion-button color="danger" (click)="cambiarCosto(costo)">Nuevo costo </ion-button>
   </ion-item>
 
 </div>

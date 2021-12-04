@@ -17,24 +17,19 @@ export class PerfilPage implements OnInit {
   currentImage: any;
   costo: number;
   conductor: any;
+
   constructor(
     private camera: Camera,
     private storage: Storage,
     private db: DbService,
 
   ) {
+    const id = this.storage.get('userid');
     this.db.getPerfil().then(res => {
       this.perfil = res;
-      console.log('Perfil: '+this.perfil);
+      console.log('Perfil: '+this.perfil.moviliaria);
       this.currentImage= this.perfil.avatar;
     });
-    if (this.perfil.moviliaria === 1) {
-      console.log('ID: '+ this.perfil.id);
-      this.db.getConductor(this.perfil.id).then(res => {
-        this.conductor = res;
-        console.log(this.conductor);
-      });
-    }
 
   }
 
@@ -54,21 +49,21 @@ export class PerfilPage implements OnInit {
       console.log('Camera error: ' + err);
     });
   }
-  async cambiarCosto(costo: number , conductor: number = null){
-    if (costo > 0 && costo < 1500 ) {
-      if (conductor) {
-        this.db.updateCosto(conductor, costo);
-      } else {
-        const conductor2 = this.perfil.id;
-        if (conductor) {
-        this.db.updateCosto(await conductor2, costo);
-        } else {
-          console.log('Error en conductor '+ conductor);
-        }
-      }
-    } else {
+  async cambiarCosto(costo: number ){
+    if (costo > 500 && costo < 1500 ) {
+        this.db.updateCosto(costo);
+    }
+     else {
       console.log('Error costo: '+costo +' debe ser entre 0, 1500');
     }
+  }
+
+  datosconductor(id){
+    console.log('ID: '+ id);
+    this.db.getConductor(id).then(res => {
+      this.conductor = res;
+      console.log(this.conductor);
+    });
   }
 
 
