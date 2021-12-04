@@ -43,7 +43,13 @@ export class ConductorPage implements OnInit {
     });
     toast.present();
   }
-
+  async showToast2(texto: string) {
+    const toast = await this.toast.create({
+      message: texto,
+      duration: 5000
+    });
+    toast.present();
+  }
   animar(id) {
     const idAnimar = '#' + id;
     this.animationCtrl.create()
@@ -66,6 +72,7 @@ export class ConductorPage implements OnInit {
     const direccion = await this.storage.get('casa');
     console.log('usuario'+usuario,'direccion'+direccion);
     this.db.addPedido(this.conductor.id_conductor, usuario,direccion,hora);
+    this.showToast2('peticion enviada al conductor');
   }
 
   ngOnInit() {

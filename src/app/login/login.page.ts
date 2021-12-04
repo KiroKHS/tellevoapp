@@ -44,12 +44,12 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-  login(){
+  async login(){
     // capturando datos del input
     // eslint-disable-next-line prefer-const
     let navExtras: NavigationExtras = {
       state: {user: this.user}
-    };
+    };let contador = 0;
     if (this.user.nombre.length > 0){
 
       // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -57,6 +57,7 @@ export class LoginPage implements OnInit {
         console.log(`Nombre: ${Data.nombre}`,'clave: '+Data.clave);
         if(this.user.clave === Data.clave && this.user.nombre === Data.usuname){
           // * validando aceso
+          contador = 1;
           this.storage.set('logueado','1');
           this.storage.set('username',Data.nombre);
           this.storage.set('userid',Data.id);
@@ -68,19 +69,24 @@ export class LoginPage implements OnInit {
           else{if (Data.moviliaria === 1){this.router.navigate(['/peticion/']);}}
         }
       }
+      if (contador === 0) {
+        this.showToast2('clave o usuario incorrecto');
+      }
 
     }else{
       this.showToast();
       this.storage.set('logueado','0');
     }
 }
-suma(n1,n2){
-  return n1+n2;
+async showToast2(texto: string) {
+  const toast = await this.toast.create({
+    message: texto,
+    duration: 5000
+  });
+  toast.present();
 }
 
 loginTest(usuario, clave){
-   usuario;
-   clave;
   if (this.user.nombre.length > 0){
     // eslint-disable-next-line @typescript-eslint/naming-convention
     for (const Data of this.data){

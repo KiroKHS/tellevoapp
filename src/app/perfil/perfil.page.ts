@@ -1,3 +1,4 @@
+import { ToastController } from '@ionic/angular';
 import { Conductor } from './../service/conductor';
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
@@ -17,11 +18,12 @@ export class PerfilPage implements OnInit {
   currentImage: any;
   costo: number;
   conductor: any;
-
+  texto = 'Ver datos';
   constructor(
     private camera: Camera,
     private storage: Storage,
     private db: DbService,
+    private toast: ToastController
 
   ) {
     const id = this.storage.get('userid');
@@ -32,8 +34,16 @@ export class PerfilPage implements OnInit {
     });
 
   }
+  async showToast2(texto: string) {
+    const toast = await this.toast.create({
+      message: texto,
+      duration: 5000
+    });
+    toast.present();
+  }
 
   takePicture() {
+    this.showToast2('espere un momento');
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -44,17 +54,22 @@ export class PerfilPage implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
       this.currentImage = 'data:image/jpeg;base64,' + imageData;
       this.db.updateAvatar(this.currentImage);
+      this.showToast2('imagen cambiada');
     }, (err) => {
       // ! mensaje error
       console.log('Camera error: ' + err);
     });
   }
   async cambiarCosto(costo: number ){
-    if (costo > 500 && costo < 1500 ) {
+    const limite= 1500;
+    if (costo > 100 && costo < limite ) {
         this.db.updateCosto(costo);
+        const mensaje = 'Percio a sido modificado';
+        this.showToast2(mensaje);
     }
      else {
       console.log('Error costo: '+costo +' debe ser entre 0, 1500');
+      this.showToast2('error precio no esta entre 100 y '+limite);
     }
   }
 
@@ -64,6 +79,7 @@ export class PerfilPage implements OnInit {
       this.conductor = res;
       console.log(this.conductor);
     });
+    this.texto='Actualizar';
   }
 
 
