@@ -14,8 +14,7 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 
 import { IonicStorageModule } from '@ionic/storage-angular';
 
-import { Camera } from '@ionic-native/camera/ngx'; 
-import { RouterModule, Router } from '@angular/router';
+import { Camera } from '@ionic-native/camera/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
