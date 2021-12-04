@@ -27,7 +27,7 @@
   </ion-item>
   <ion-item *ngIf="perfil.moviliaria === 1">
     <ion-label>Eres conductor</ion-label>
-    <ion-button (click)="datosconductor(perfil.id)">Ver datos</ion-button>
+    <ion-button (click)="datosconductor(perfil.id)">{{texto}}</ion-button>
   </ion-item>
   <ion-item *ngIf="perfil.moviliaria === 1 && conductor">
     <ion-label>Costo: {{conductor.costo}}</ion-label>

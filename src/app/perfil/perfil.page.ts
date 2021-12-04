@@ -18,7 +18,7 @@ export class PerfilPage implements OnInit {
   currentImage: any;
   costo: number;
   conductor: any;
-  texto = 'Ver datos';
+  texto = 'Ver Datos';
   constructor(
     private camera: Camera,
     private storage: Storage,
