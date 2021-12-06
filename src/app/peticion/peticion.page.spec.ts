@@ -18,7 +18,7 @@ describe('PeticionPage', () => {
     fixture.detectChanges();
   }));
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('Probar eliminacion de pedido', () => {
+    expect(component.deletePedido(1)).toBeTruthy();
+  });
 });

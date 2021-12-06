@@ -32,5 +32,5 @@ describe('LoginPage', () => {
     expect(component.loginTest('sett','dinero')).toBeFalsy();
     //si sale bien debe dar verdadero
   });
-  
+
 });

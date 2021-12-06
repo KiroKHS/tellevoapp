@@ -28,7 +28,7 @@ export class PeticionPage implements OnInit {
     ) { }
 
 
-    async showToast(sol) {
+    async showToast(sol: string) {
     const mensaje = sol;
     const toast = await this.toast.create({
       message: mensaje ,
@@ -64,29 +64,14 @@ logout(): void{
     .play();
     // para que se salga el mensaje de toast
     this.deletePedido(id);
-    this.showToast('peticion Rechazada');
   }
 
   deletePedido(id){
     this.db.deletePedido(id).then(async (res) => {
     });
+    this.showToast('peticion Rechazada y eliminada');
   }
 
-  takePicture() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    };
-
-    this.camera.getPicture(options).then((imageData) => {
-      this.currentImage = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-      // Handle error
-      console.log('Camera issue:' + err);
-    });
-  }
 
 
   ngOnInit() {

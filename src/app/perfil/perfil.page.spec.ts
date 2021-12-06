@@ -25,9 +25,9 @@ describe('PerfilPage', () => {
   // });
   it('Titulo Perfil correcto', () => {
     //agarando cosas del html
-    let dom = fixture.debugElement.nativeElement;
-    let titulo =  'perfil '+ component.perfil.nombre
+    const dom = fixture.debugElement.nativeElement;
+    const titulo =  'perfil '+ component.perfil.nombre;
     //deberia dar titulo 'perfil [nombre]'
-    expect(dom.querySelector("ion-title").textContent).toContain(titulo);
-  }); 
+    expect(dom.querySelector('ion-title').textContent).toContain(titulo);
+  });
 });

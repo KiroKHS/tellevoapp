@@ -43,7 +43,13 @@ export class ConductorPage implements OnInit {
     });
     toast.present();
   }
-
+  async showToast2(texto: string) {
+    const toast = await this.toast.create({
+      message: texto,
+      duration: 5000
+    });
+    toast.present();
+  }
   animar(id) {
     const idAnimar = '#' + id;
     this.animationCtrl.create()
@@ -56,11 +62,17 @@ export class ConductorPage implements OnInit {
     this.showToast();
   }
 
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  async addPetiTest(id_cond: number, usuario: string, direccion: string, hora: string){
+    this.db.addPedido(id_cond, usuario, direccion, hora);
+  }
+
   async storeData(hora) {
     const usuario = await this.storage.get('username');
     const direccion = await this.storage.get('casa');
     console.log('usuario'+usuario,'direccion'+direccion);
     this.db.addPedido(this.conductor.id_conductor, usuario,direccion,hora);
+    this.showToast2('peticion enviada al conductor');
   }
 
   ngOnInit() {

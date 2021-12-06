@@ -22,8 +22,10 @@ describe('ConductorPage', () => {
   //   expect(component).toBeTruthy();
   // });
 
-  // it('Datos valor nulo', () =>{
-  //   expect(component.id).toBeNull();
-  // });
+  it('Peticion agregada', () =>{
+    expect(
+      component.addPetiTest(1,'test','Localhost','00:16')
+      ).toBeTruthy();
+  });
 
 });
