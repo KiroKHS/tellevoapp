@@ -15,5 +15,5 @@ npm install @ionic/storage-angular
 ***extenciones comentario
 better comments
 
-***
+*** resolvio problema de apk
 npm install @angular-devkit/architect --save-dev
